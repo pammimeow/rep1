@@ -1,0 +1,94 @@
+doctype html
+html
+  head
+    link(type='text/css', rel='stylesheet', href='/stylesheets/site.css')
+    |     
+    title Hello
+    |   &#x9;
+    style.
+      .alignmiddle {
+      width:70%;
+      margin: 0 auto;
+      }
+      .alignmiddle span {
+      margin:0.5rem;
+      }
+  body
+    br
+    br
+    div
+      div.floatRight
+        span 
+          a(href='/addnew') Add New
+        span 
+          a(href='/editOps') Edit Ops
+      div.clearfix
+      br
+      br
+
+    .alignmiddle
+      h3 #{message}
+      form(action='', method='post' enctype='multipart/form-data' id='addData')
+        h1 Add new business
+        br
+        label Name :
+        br
+        input(type='text', name='name')
+        br
+        br
+        label Business Description :
+        br
+        textarea(rows='5', cols='30' name='description')
+        br
+        br
+        label Image :
+        br
+        input(type='file', name='businessImage')
+        br
+        br
+        label Phone :
+        br
+        input(type='text', name='phone')
+        br
+        br
+        label E-Mail :
+        br
+        input(type='text', name='email')
+        br
+        br
+        label Address :
+        br
+        textarea(rows='5', cols='30' name='address')
+        br
+        br
+        input(type='submit', name='submitinfo')
+
+  script(type='text/javascript', src="http://code.jquery.com/jquery-1.9.1.min.js")
+  script(type='text/javascript').
+    $(document).ready(function(){
+      $('#addData').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+              type: 'POST',
+              url: '/addDetail',
+              data: $(this).serialize(),
+              error: function(e) {
+                console.log(e);              
+            },
+            success: function(data) {
+               console.log(data);
+              if (data) {
+
+               // if(data.res)
+                  alert("Successfully saved!!");
+                /*else
+                  alert("err");*/
+              } else {
+                alert("Error Occured!!");
+              }
+              console.log(data);
+              window.location='http://localhost:3000';
+            }
+          });
+      });
+    });       

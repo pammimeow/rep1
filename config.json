@@ -1,0 +1,4 @@
+{
+    "mongodbUrl" : "mongodb://localhost/my_app",
+    "mongoPoolSize" : 10
+}
